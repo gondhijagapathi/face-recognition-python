@@ -5,17 +5,18 @@ haar_file = 'haarcascade_frontalface_default.xml'
 datasets = 'datasets'  # All the faces data will be present this folder
 sub_data = 'jaggu'  # These are sub data sets of folder, for my faces I've used my name
 
-path = 'c:/datasets/jaggu/'
+path = 'c:/datasets/teja/'
 if not os.path.isdir(path):
     os.mkdir(path)
 (width, height) = (130, 100)  # defining the size of images
 
 face_cascade = cv2.CascadeClassifier(haar_file)
-webcam = cv2.VideoCapture(0)  # '0' is use for my webcam, if you've any other camera attached use '1' like this
+
 
 # The program loops until it has 30 images of the face.
 count = 1
 while count < 31:
+    webcam = cv2.VideoCapture('http://192.168.43.1:8080/shot.jpg')  # '0' is use for my webcam, if you've any other camera attached use '1' like this
     (_, im) = webcam.read()
     gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 4)
